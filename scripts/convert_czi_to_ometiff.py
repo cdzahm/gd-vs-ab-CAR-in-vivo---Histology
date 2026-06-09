@@ -52,6 +52,10 @@ BIOFORMATS2RAW = "bioformats2raw"
 # Path to raw2ometiff executable. Same rules as above.
 RAW2OMETIFF = "raw2ometiff"
 
+# -- TEST MODE ----------------------------------------------------------------
+# Set to True to convert only the first file as a sanity check.
+# Set to False to run the full batch.
+TEST_MODE = True
 # -----------------------------------------------------------------------------
 
 
@@ -148,7 +152,12 @@ def main():
         logging.error(f"No .czi files found in: {CZI_DIR}")
         return
 
-    logging.info(f"Found {len(czi_files)} .czi files")
+    # In TEST_MODE, only process the first file
+    if TEST_MODE:
+        logging.info("TEST MODE: processing first file only")
+        czi_files = czi_files[:1]
+    else:
+        logging.info(f"Found {len(czi_files)} .czi files")
 
     # tempfile.TemporaryDirectory() creates a temp folder and automatically
     # deletes it when the 'with' block exits, even if the script crashes.
