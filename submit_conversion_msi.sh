@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32gb
-#SBATCH --output=/home/zahm0007/czi_convert_%j.log
+#SBATCH --output=/scratch.global/zahm0007/gdCAR Histology/Histology/Scripts/czi_convert_%j.log
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=zahm0007@umn.edu
 
@@ -14,4 +14,4 @@
 module load java/openjdk-21.0.2
 
 # Run the conversion script
-python /home/zahm0007/convert_czi_to_ometiff_msi.py
+python "/scratch.global/zahm0007/gdCAR Histology/Histology/Scripts/convert_czi_to_ometiff_msi.py"
